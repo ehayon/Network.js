@@ -1,3 +1,3 @@
-# Network
+# Network.js
 
-Describe Network here.
+An application for visualizing and performing search operations on graphs
