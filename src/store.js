@@ -11,4 +11,6 @@ store.subscribe(() => {
     console.log("Store has changed state", store.getState())
 })
 
+window.store = store
+
 export default store

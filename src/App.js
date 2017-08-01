@@ -6,7 +6,7 @@ import {Provider} from 'react-redux'
 import {Layer,Rect,Stage,Group} from 'react-konva'
 
 import store from './store'
-import Graph from './graph'
+import Graph from './Graph/graph'
 
 store.dispatch({type: "ADD_NODE", name: "Node 3", id: 3, x: 350, y: 350})
 store.dispatch({type: "ADD_NODE", name: "Node 4", id: 4, x: 400, y: 400})
