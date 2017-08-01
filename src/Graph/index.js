@@ -7,12 +7,10 @@ import Node from './node'
 class Graph extends React.Component {
     
     render() {
-        console.log(this.props.nodes)
-
         return (
             <Group>
                 {this.props.nodes.map((n, i) => {
-                    return (<Node key={n.id} x={n.x} y={n.y} />)
+                    return <Node key={n.id} id={n.id} name={n.name} x={n.x} y={n.y} />
                 })}
             </Group>
         )

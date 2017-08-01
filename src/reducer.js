@@ -1,23 +1,9 @@
 const initialState = {
-    nodes: [
-        {
-            id: 1,
-            name: 'Node 1',
-            x: 150,
-            y: 150
-        }
-    ],
-    edges: [
-        {
-            source: 1,
-            target: 2
-        },
-        {
-            source: 2,
-            target: 3
-        }
-    ]
+    nodes: [],
+    edges: []
 }
+
+
 
 const reducer = (state=initialState, action) => {
     switch(action.type) {
@@ -41,6 +27,7 @@ const reducer = (state=initialState, action) => {
             break;
         }
     }
+    return state
 }
 
 export default reducer

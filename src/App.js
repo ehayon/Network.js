@@ -6,12 +6,17 @@ import {Provider} from 'react-redux'
 import {Layer,Rect,Stage,Group} from 'react-konva'
 
 import store from './store'
-import Graph from './Graph/graph'
+import Graph from './Graph'
 
-store.dispatch({type: "ADD_NODE", name: "Node 3", id: 3, x: 350, y: 350})
-store.dispatch({type: "ADD_NODE", name: "Node 4", id: 4, x: 400, y: 400})
-store.dispatch({type: "ADD_NODE", name: "Node 5", id: 5, x: 500, y: 300})
-store.dispatch({type: "ADD_NODE", name: "Node 6", id: 6, x: 100, y: 350})
+for(var i=0; i<500; i++) {
+    store.dispatch({
+      type: "ADD_NODE",
+      name: "Node " + i,   
+      id: i,
+      x: Math.floor(Math.random()*700),
+      y: Math.floor(Math.random()*700)      
+    })
+}
 
 class App extends Component {
   render() {

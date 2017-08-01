@@ -11,7 +11,7 @@ export default class Node extends React.Component {
     }
 
     render () {
-        console.log("Rendering Node")
+        //console.log("Rendering Node", this.props.name)
         return (
             <Circle 
                 radius={this.props.radius || 10}

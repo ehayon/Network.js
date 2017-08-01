@@ -4,11 +4,12 @@ import promiseMiddleware from 'redux-promise-middleware'
 import reducer from './reducer'
 
 const mid = applyMiddleware(thunkMiddleware, promiseMiddleware())
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-let store = createStore(reducer, mid, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+let store = createStore(reducer, undefined, composeEnhancers(mid))
 
 store.subscribe(() => {
-    console.log("Store has changed state", store.getState())
+    //console.log("Store has changed state", store.getState())
 })
 
 window.store = store
