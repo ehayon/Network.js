@@ -12,9 +12,12 @@
     "test:watch": "nwb test-react --server"
   },
   "dependencies": {
+    "konva": "^1.6.7",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-konva": "^1.1.4"
+    "react-konva": "^1.1.4",
+    "redux-promise-middleware": "^4.3.0",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "nwb": "0.18.x"
