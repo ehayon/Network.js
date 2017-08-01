@@ -1,13 +1,17 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import {Rect,Circle,Layer,Group} from 'react-konva'
 
 class Graph extends React.Component {
     
     render() {
+        console.log(this.props.nodes)
+
         return (
             <Group>
-                <Node x={200} y={300} />
-                <Node x={500} y={300} />
+                {this.props.nodes.map((n, i) => {
+                    return (<Node key={n.id} x={n.x} y={n.y} />)
+                })}
             </Group>
         )
     }
@@ -23,9 +27,10 @@ class Node extends React.Component {
     }
 
     render () {
+        console.log("Rendering Node")
         return (
             <Circle 
-                radius={this.props.radius || 50}
+                radius={this.props.radius || 10}
                 fill={'green'}
                 x={this.props.x}
                 y={this.props.y}
@@ -39,4 +44,12 @@ class Node extends React.Component {
     }
 }
 
-export default Graph
+var mapStateToProps = (state) => {
+    return {
+        nodes: state.nodes,
+        edges: state.edges
+    }
+}
+
+
+export default connect(mapStateToProps)(Graph)
