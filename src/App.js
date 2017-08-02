@@ -8,7 +8,7 @@ import {Layer,Rect,Stage,Group} from 'react-konva'
 import store from './store'
 import Graph from './Graph'
 
-for(var i=0; i<500; i++) {
+for(var i=0; i<2; i++) {
     store.dispatch({
       type: "ADD_NODE",
       name: "Node " + i,   
@@ -17,6 +17,12 @@ for(var i=0; i<500; i++) {
       y: Math.floor(Math.random()*700)      
     })
 }
+
+store.dispatch({
+  type: "ADD_EDGE",
+  source: 0,
+  target: 1
+})
 
 class App extends Component {
   render() {

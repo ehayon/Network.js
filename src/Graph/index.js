@@ -18,6 +18,7 @@ class Graph extends React.Component {
 }
 
 var mapStateToProps = (state) => {
+    console.log(state)
     return {
         nodes: state.nodes,
         edges: state.edges

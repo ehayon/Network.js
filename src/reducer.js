@@ -1,39 +1,35 @@
-const initialState = {
-    nodes: [],
-    edges: []
-}
+import {combineReducers} from 'redux'
 
+const initialNodeState = []
+const initialEdgeState = []
 
-
-const reducer = (state=initialState, action) => {
+const nodeReducer = (state=initialNodeState, action) => {
     switch(action.type) {
         case "ADD_NODE": {
-            return {
-                ...state, 
-                nodes: [...state.nodes, 
+            return [...state, 
                     {
                         name: action.name, 
                         id: action.id,
                         x: action.x,
                         y: action.y
-                    }]
-            }
+                    }]    
         }
         case "REMOVE_NODE": {
-            return {
-                ...state,
-                nodes: state.nodes.filter(n => n.id != action.id)
-            }
-            break;
+            return state.filter(n => n.id != action.id)
         }
         case "NODE_DRAGGED": {
-            return {
-                ...state,
-                nodes: state.nodes.map(n => (n.id == action.id) ? {...n, x: action.x, y: action.y} : n)
-            }
+            return state.map(n => (n.id == action.id) ? {...n, x: action.x, y: action.y} : n)
         }
     }
     return state
 }
 
-export default reducer
+const edgeReducer = (state=initialEdgeState, action) => {
+
+    return state
+}
+
+export default combineReducers({
+    nodes: nodeReducer,
+    edges: edgeReducer
+})
