@@ -27,6 +27,7 @@ const edgeReducer = (state=initialEdgeState, action) => {
     switch(action.type) {
         case "ADD_EDGE": {
             return [...state, {
+                id: action.id,
                 source: action.source,
                 target: action.target
             }]

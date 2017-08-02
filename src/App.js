@@ -20,6 +20,7 @@ for(var i=0; i<2; i++) {
 
 store.dispatch({
   type: "ADD_EDGE",
+  id: 0,
   source: 0,
   target: 1
 })

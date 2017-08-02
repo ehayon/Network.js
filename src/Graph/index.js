@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Rect,Circle,Layer,Group} from 'react-konva'
 
 import Node from './node'
+import Edge from './edge'
 
 class Graph extends React.Component {
     
@@ -11,6 +12,10 @@ class Graph extends React.Component {
             <Group>
                 {this.props.nodes.map((n, i) => {
                     return <Node key={n.id} id={n.id} name={n.name} x={n.x} y={n.y} />
+                })}
+
+                {this.props.edges.map((n, i) => {
+                    return <Edge key={n.id} id={n.id} source={n.source} target={n.target} />
                 })}
             </Group>
         )
