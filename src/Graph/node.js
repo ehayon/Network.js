@@ -9,13 +9,15 @@ export default class Node extends React.Component {
 
     handleDragEnd = (e) => {
         // update X,Y coordinates in store
-        let pointerPosition = e.target.getStage().getPointerPosition()
-    
+        console.log(e.target)
+        let xPos = e.target.attrs.x
+        let yPos = e.target.attrs.y
+
         store.dispatch({
             type: "NODE_DRAGGED",
             id: this.props.id,
-            x: pointerPosition.x,
-            y: pointerPosition.y
+            x: xPos,
+            y: yPos
         })
     }
 
