@@ -26,6 +26,12 @@ const reducer = (state=initialState, action) => {
             }
             break;
         }
+        case "NODE_DRAGGED": {
+            return {
+                ...state,
+                nodes: state.nodes.map(n => (n.id == action.id) ? {...n, x: action.x, y: action.y} : n)
+            }
+        }
     }
     return state
 }
