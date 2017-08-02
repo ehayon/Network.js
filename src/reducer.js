@@ -6,13 +6,12 @@ const initialEdgeState = []
 const nodeReducer = (state=initialNodeState, action) => {
     switch(action.type) {
         case "ADD_NODE": {
-            return [...state, 
-                    {
-                        name: action.name, 
-                        id: action.id,
-                        x: action.x,
-                        y: action.y
-                    }]    
+            return [...state, {
+                name: action.name, 
+                id: action.id,
+                x: action.x,
+                y: action.y
+            }]   
         }
         case "REMOVE_NODE": {
             return state.filter(n => n.id != action.id)
@@ -25,7 +24,14 @@ const nodeReducer = (state=initialNodeState, action) => {
 }
 
 const edgeReducer = (state=initialEdgeState, action) => {
-
+    switch(action.type) {
+        case "ADD_EDGE": {
+            return [...state, {
+                source: action.source,
+                target: action.target
+            }]
+        }
+    }
     return state
 }
 
