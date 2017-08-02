@@ -3,13 +3,8 @@ import {Circle} from 'react-konva'
 import store from '../store'
 
 export default class Node extends React.Component {
-    handleDragStart = () => {
-        // drag has started
-    }
-
-    handleDragEnd = (e) => {
+    handleDrag = (e) => {
         // update X,Y coordinates in store
-        console.log(e.target)
         let xPos = e.target.attrs.x
         let yPos = e.target.attrs.y
 
@@ -20,9 +15,11 @@ export default class Node extends React.Component {
             y: yPos
         })
     }
+    handleDragEnd = (e) => {
+
+    }
 
     render () {
-        //console.log("Rendering Node", this.props.name)
         return (
             <Circle 
                 radius={this.props.radius || 10}
@@ -32,8 +29,8 @@ export default class Node extends React.Component {
                 stroke={'black'}
                 strokeWidth={1}
                 draggable
-                onDragStart={this.handleDragStart}
                 onDragEnd={this.handleDragEnd}
+                onDragMove={this.handleDrag}
             />
         )
     }
