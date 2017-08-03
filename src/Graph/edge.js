@@ -15,12 +15,10 @@ export default class Edge extends React.Component {
             Math.floor((source.y + target.y) / 2)
         )
         // find negative reciprocal of slope => perpendicular bisector to midpoint
-        // -(x2-x1)/(y2-y1)
         const invSlope = -1 *
             (target.x - source.x) / 
             (target.y - source.y)
-        
-        
+           
         let anchorPt = {}
         
         if (invSlope == -Infinity || invSlope == Infinity) {
@@ -31,14 +29,11 @@ export default class Edge extends React.Component {
             anchorPt.x = midpoint.x + x_p
             anchorPt.y = midpoint.y + (invSlope * x_p)
         }
-
         return anchorPt
     }
+
     render() {
         /* Draw an edge between props.source and props.target */
-        
-        
-
         return (
             <Group>
                 <Line 
@@ -51,7 +46,7 @@ export default class Edge extends React.Component {
                         this.props.target.y
                     ]}
                     bezier={true}
-                    tension={0.5}
+                    tension={0.8}
                     stroke='red'
                 />
 
@@ -65,7 +60,7 @@ export default class Edge extends React.Component {
                         this.props.target.y
                     ]}
                     bezier={true}
-                    tension={0.5}
+                    tension={0.8}
                     stroke='red'
                 />
 
