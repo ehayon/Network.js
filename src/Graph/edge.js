@@ -5,24 +5,22 @@ export default class Edge extends React.Component {
     /* TODO: Make sure duplicate edges are
              not stacked top of eachother */
 
-    render() {
-        /* Draw an edge between props.source and props.target */
-        
+    buildAnchor = (source, target, anchorDistance) => {
         // find midpoint of the line
         let midpoint = {}
         midpoint.x = (
-            Math.floor((this.props.source.x + this.props.target.x) / 2)
+            Math.floor((source.x + target.x) / 2)
         )
          midpoint.y = (
-            Math.floor((this.props.source.y + this.props.target.y) / 2)
+            Math.floor((source.y + target.y) / 2)
         )
         // find negative reciprocal of slope => perpendicular bisector to midpoint
         // -(x2-x1)/(y2-y1)
         const invSlope = -1 *
-            (this.props.target.x - this.props.source.x) / 
-            (this.props.target.y - this.props.source.y)
+            (target.x - source.x) / 
+            (target.y - source.y)
         
-        const anchorDistance = -50
+        
         let anchorPt = {}
         
         if (invSlope == -Infinity || invSlope == Infinity) {
@@ -34,34 +32,44 @@ export default class Edge extends React.Component {
             anchorPt.y = midpoint.y + (invSlope * x_p)
         }
 
+        return anchorPt
+    }
+    render() {
+        /* Draw an edge between props.source and props.target */
+        
+        
+
         return (
             <Group>
                 <Line 
                     points={[
                         this.props.source.x,
                         this.props.source.y,
+                        this.buildAnchor(this.props.source, this.props.target, 20).x,
+                        this.buildAnchor(this.props.source, this.props.target, 20).y,
                         this.props.target.x,
                         this.props.target.y
                     ]}
+                    bezier={true}
+                    tension={0.5}
                     stroke='red'
                 />
-                <Circle 
-                    radius={this.props.radius || 5}
-                    fill={'blue'}
-                    x={midpoint.x}
-                    y={midpoint.y}
-                    stroke={'black'}
-                    strokeWidth={1}
-                />
+
                 <Line 
                     points={[
-                        midpoint.x,
-                        midpoint.y,
-                        anchorPt.x,
-                        anchorPt.y
+                        this.props.source.x,
+                        this.props.source.y,
+                        this.buildAnchor(this.props.source, this.props.target, -20).x,
+                        this.buildAnchor(this.props.source, this.props.target, -20).y,
+                        this.props.target.x,
+                        this.props.target.y
                     ]}
-                    stroke='blue'
+                    bezier={true}
+                    tension={0.5}
+                    stroke='red'
                 />
+
+                
             </Group>
         )
     }
