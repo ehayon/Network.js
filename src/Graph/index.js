@@ -13,16 +13,16 @@ class Graph extends React.Component {
     handleStageDragStart = (e) => {
         // only change pointer on stage move, not shape move
         if(e.target.nodeType == "Stage") 
-        e.target.content.style.cursor = 'move'
+            e.target.content.style.cursor = 'move'
     }
     handleStageDragEnd = (e) => {
         if(e.target.nodeType == "Stage")
-        e.target.content.style.cursor = 'default'
+            e.target.content.style.cursor = 'default'
     }
     updateWindowDimensions = () => {
         this.setState({
-        height: window.innerHeight,
-        width: window.innerWidth
+            height: window.innerHeight,
+            width: window.innerWidth
         })
     }
     componentWillMount = () => {
