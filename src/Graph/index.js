@@ -1,12 +1,35 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Rect,Circle,Layer,Group} from 'react-konva'
+import {Rect,Circle,Layer,Group,Stage} from 'react-konva'
 
 import Node from './node'
 import Edge from './edge'
 
 class Graph extends React.Component {
-    
+    handleScrollWheel = (e) => {
+        /* TODO: Scale stageX and stageY (zoom) */
+    }
+    handleStageDragStart = (e) => {
+        // only change pointer on stage move, not shape move
+        if(e.target.nodeType == "Stage") 
+        e.target.content.style.cursor = 'move'
+    }
+    handleStageDragEnd = (e) => {
+        if(e.target.nodeType == "Stage")
+        e.target.content.style.cursor = 'default'
+    }
+    updateWindowDimensions = () => {
+        this.setState({
+        height: window.innerHeight,
+        width: window.innerWidth
+        })
+    }
+    componentWillMount = () => {
+        this.updateWindowDimensions()
+    }
+    componentDidMount = () => {
+        window.addEventListener('resize', this.updateWindowDimensions)
+    }
     render() {
         let edges = this.props.edges.map((e, i) => {
             return (
@@ -32,10 +55,20 @@ class Graph extends React.Component {
         })
 
         return (
-            <Group>
-                {edges}
-                {nodes}
-            </Group>
+            <Stage
+                draggable
+                onDragStart={this.handleStageDragStart}
+                onDragEnd={this.handleStageDragEnd}
+                onWheel={this.handleScrollWheel}
+                width={this.state.width}
+                height={this.state.height}>
+                <Layer>
+                     <Group>
+                        {edges}
+                        {nodes}
+                    </Group>
+                </Layer>
+            </Stage>
         )
     }
 }
@@ -43,7 +76,8 @@ class Graph extends React.Component {
 var mapStateToProps = (state) => {
     return {
         nodes: state.nodes,
-        edges: state.edges
+        edges: state.edges,
+        graph: state.graph
     }
 }
 

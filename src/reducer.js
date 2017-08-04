@@ -2,6 +2,10 @@ import {combineReducers} from 'redux'
 
 const initialNodeState = []
 const initialEdgeState = []
+const initialGraphState = {
+    xScale: 1.0,
+    yScale: 1.0
+}
 
 const nodeReducer = (state=initialNodeState, action) => {
     switch(action.type) {
@@ -36,7 +40,21 @@ const edgeReducer = (state=initialEdgeState, action) => {
     return state
 }
 
+const graphReducer = (state=initialGraphState, action) => {
+    switch(action.type) {
+        case "CHANGE_ZOOM": {
+            return {
+                ...state, 
+                xScale: action.xScale,
+                yScale: action.yScale
+            }
+        }
+    }
+    return state
+}
+
 export default combineReducers({
     nodes: nodeReducer,
-    edges: edgeReducer
+    edges: edgeReducer,
+    graph: graphReducer
 })
