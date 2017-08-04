@@ -31,14 +31,32 @@ class App extends Component {
     /* TODO: Scale stageX and stageY (zoom) */
   }
 
+  handleStageDragStart = (e) => {
+    // only change pointer on stage move, not shape move
+    if(e.target.nodeType == "Stage") 
+      e.target.content.style.cursor = 'move'
+  }
+
+  handleStageDragEnd = (e) => {
+    if(e.target.nodeType == "Stage")
+      e.target.content.style.cursor = 'default'
+  }
+
   render() {
     return (
       <Provider store={store}>
-        <Stage draggable drawBorder width={1000} height={1000} onWheel={this.handleScrollWheel}>
-          <Layer>
-            <Rect width={1000} height={1000} x={0} y={0} />
-            <Graph />
-          </Layer>
+        <Stage 
+          draggable 
+          onDragStart={this.handleStageDragStart} 
+          onDragEnd={this.handleStageDragEnd} 
+          drawBorder 
+          width={1000} 
+          height={1000} 
+          onWheel={this.handleScrollWheel}>
+            <Layer>
+              <Rect width={1000} height={1000} x={0} y={0} />
+              <Graph />
+            </Layer>
         </Stage>
       </Provider>
     );
