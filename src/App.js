@@ -48,10 +48,8 @@ class App extends Component {
       width: window.innerWidth
     })
   }
-
   componentWillMount = () => {
     this.updateWindowDimensions()
-
   }
   componentDidMount = () => {
     window.addEventListener('resize', this.updateWindowDimensions)
