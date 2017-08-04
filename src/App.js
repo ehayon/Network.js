@@ -8,29 +8,35 @@ import {Layer,Rect,Stage,Group} from 'react-konva'
 import store from './store'
 import Graph from './Graph'
 
-for(var i=0; i<2; i++) {
+for(var i=0; i<20; i++) {
   store.dispatch({
     type: "ADD_NODE",
     name: "Node " + i,   
     id: i,
-    x: Math.floor(Math.random()*700),
-    y: Math.floor(Math.random()*700)      
+    x: Math.floor(Math.random()*2000),
+    y: Math.floor(Math.random()*2000)      
   })
 }
-for(var i=0; i<1; i++) {
+for(var i=0; i<10; i++) {
   store.dispatch({
     type: "ADD_EDGE",
     id: i,
-    source: Math.floor(Math.random()*2),
-    target: Math.floor(Math.random()*2)
+    source: Math.floor(Math.random()*20),
+    target: Math.floor(Math.random()*20)
   })
 }
 class App extends Component {
+
+  handleScrollWheel = (e) => {
+    /* TODO: Scale stageX and stageY (zoom) */
+  }
+
   render() {
     return (
       <Provider store={store}>
-        <Stage width={700} height={700}>
+        <Stage draggable drawBorder width={1000} height={1000} onWheel={this.handleScrollWheel}>
           <Layer>
+            <Rect width={1000} height={1000} x={0} y={0} />
             <Graph />
           </Layer>
         </Stage>
