@@ -4,7 +4,9 @@ const initialNodeState = []
 const initialEdgeState = []
 const initialGraphState = {
     xScale: 1.0,
-    yScale: 1.0
+    yScale: 1.0,
+    xStage: 0.0,
+    yStage: 0.0
 }
 
 const nodeReducer = (state=initialNodeState, action) => {
@@ -45,8 +47,15 @@ const graphReducer = (state=initialGraphState, action) => {
         case "CHANGE_SCALE": {
             return {
                 ...state, 
-                xScale: action.xScale,
-                yScale: action.yScale
+                xScale: action.x,
+                yScale: action.y
+            }
+        }
+        case "STAGE_MOVED": {
+            return {
+                ...state,
+                xStage: action.x,
+                yStage: action.y
             }
         }
     }

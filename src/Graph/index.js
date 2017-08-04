@@ -16,8 +16,15 @@ class Graph extends React.Component {
             e.target.content.style.cursor = 'move'
     }
     handleStageDragEnd = (e) => {
-        if(e.target.nodeType == "Stage")
+        if(e.target.nodeType == "Stage") {
             e.target.content.style.cursor = 'default'
+            store.dispatch({
+                type: "STAGE_MOVED",
+                x: e.target.attrs.x,
+                y: e.target.attrs.y
+            })
+        }
+
     }
     updateWindowDimensions = () => {
         this.setState({
@@ -64,7 +71,9 @@ class Graph extends React.Component {
                 width={this.state.width}
                 height={this.state.height}
                 scaleX={this.props.graph.xScale}
-                scaleY={this.props.graph.yScale}>
+                scaleY={this.props.graph.yScale}
+                x={this.props.graph.xStage}
+                y={this.props.graph.yStage}>
                 <Layer>
                      <Group>
                         {edges}
