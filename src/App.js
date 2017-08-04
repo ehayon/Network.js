@@ -42,6 +42,21 @@ class App extends Component {
       e.target.content.style.cursor = 'default'
   }
 
+  updateWindowDimensions = () => {
+    this.setState({
+      height: window.innerHeight,
+      width: window.innerWidth
+    })
+  }
+
+  componentWillMount = () => {
+    this.updateWindowDimensions()
+
+  }
+  componentDidMount = () => {
+    window.addEventListener('resize', this.updateWindowDimensions)
+  }
+
   render() {
     return (
       <Provider store={store}>
@@ -50,11 +65,11 @@ class App extends Component {
           onDragStart={this.handleStageDragStart} 
           onDragEnd={this.handleStageDragEnd} 
           drawBorder 
-          width={1000} 
-          height={1000} 
+          width={this.state.width} 
+          height={this.state.height} 
           onWheel={this.handleScrollWheel}>
             <Layer>
-              <Rect width={1000} height={1000} x={0} y={0} />
+              <Rect width={this.state.width} height={this.state.height} x={0} y={0} />
               <Graph />
             </Layer>
         </Stage>
