@@ -4,6 +4,7 @@ import {Rect,Circle,Layer,Group,Stage} from 'react-konva'
 
 import Node from './node'
 import Edge from './edge'
+import store from '../store'
 
 class Graph extends React.Component {
     handleScrollWheel = (e) => {
@@ -61,7 +62,9 @@ class Graph extends React.Component {
                 onDragEnd={this.handleStageDragEnd}
                 onWheel={this.handleScrollWheel}
                 width={this.state.width}
-                height={this.state.height}>
+                height={this.state.height}
+                scaleX={this.props.graph.xScale}
+                scaleY={this.props.graph.yScale}>
                 <Layer>
                      <Group>
                         {edges}

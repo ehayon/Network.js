@@ -42,7 +42,7 @@ const edgeReducer = (state=initialEdgeState, action) => {
 
 const graphReducer = (state=initialGraphState, action) => {
     switch(action.type) {
-        case "CHANGE_ZOOM": {
+        case "CHANGE_SCALE": {
             return {
                 ...state, 
                 xScale: action.xScale,
