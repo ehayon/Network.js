@@ -16,7 +16,8 @@ const nodeReducer = (state=initialNodeState, action) => {
                 name: action.name, 
                 id: action.id,
                 x: action.x,
-                y: action.y
+                y: action.y,
+                label: action.label
             }]   
         }
         case "REMOVE_NODE": {
@@ -35,7 +36,9 @@ const edgeReducer = (state=initialEdgeState, action) => {
             return [...state, {
                 id: action.id,
                 source: action.source,
-                target: action.target
+                target: action.target,
+                label: action.label,
+                labelVisibility: false
             }]
         }
     }

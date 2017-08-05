@@ -46,7 +46,8 @@ class Graph extends React.Component {
                     id={e.id} 
                     source={this.props.nodes.find(n => n.id == e.source)} 
                     target={this.props.nodes.find(n => n.id == e.target)} 
-                    />
+                    label={e.label}
+                />
             )
         })
 
@@ -58,6 +59,7 @@ class Graph extends React.Component {
                     name={n.name} 
                     x={n.x} 
                     y={n.y} 
+                    label={n.label}
                 />
             )
         })

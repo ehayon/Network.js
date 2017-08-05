@@ -1,5 +1,5 @@
 import React from 'react'
-import {Circle} from 'react-konva'
+import {Circle,Group,Text} from 'react-konva'
 import store from '../store'
 
 export default class Node extends React.Component {
@@ -21,17 +21,29 @@ export default class Node extends React.Component {
 
     render () {
         return (
-            <Circle 
-                radius={this.props.radius || 10}
-                fill={'green'}
-                x={this.props.x}
-                y={this.props.y}
-                stroke={'black'}
-                strokeWidth={1}
-                draggable
-                onDragEnd={this.handleDragEnd}
-                onDragMove={this.handleDrag}
-            />
+            <Group>
+                <Text
+                    text={this.props.label}
+                    fontSize={14}
+                    x={this.props.x}
+                    y={this.props.y}
+                    width={200}
+                    offsetY={30}
+                    offsetX={100}
+                    align={'center'}
+                />
+                <Circle 
+                    radius={this.props.radius || 7}
+                    fill={'#b0b0b0'}
+                    x={this.props.x}
+                    y={this.props.y}
+                    stroke={'black'}
+                    strokeWidth={1}
+                    draggable
+                    onDragEnd={this.handleDragEnd}
+                    onDragMove={this.handleDrag}
+                />
+            </Group>
         )
     }
 }
