@@ -15,7 +15,7 @@ for(var i=0; i<2; i++) {
     id: i,
     x: Math.floor(Math.random()*500),
     y: Math.floor(Math.random()*500),
-    label: "This is a long node name"      
+    label: "Node " + i      
   })
 }
 for(var i=0; i<1; i++) {
